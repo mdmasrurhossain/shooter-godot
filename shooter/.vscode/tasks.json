@@ -6,8 +6,7 @@
             "command": "C:/Program Files/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe",
             "type": "process",
             "args": [
-                "--path",
-                "${workspaceRoot}",
+                "--build-solutions",
             ],
             "problemMatcher": "$msCompile"
         }

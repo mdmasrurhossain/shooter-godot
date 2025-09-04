@@ -16,13 +16,11 @@ texture = ExtResource("1_us1fn")
 [node name="PillowLarge" type="Sprite2D" parent="."]
 position = Vector2(215, 5.00001)
 rotation = 0.23911
-scale = Vector2(1, 1)
 texture = ExtResource("2_g5a0r")
 
 [node name="PillowSmall" type="Sprite2D" parent="."]
 position = Vector2(-7, -105)
 rotation = 1.69122
-scale = Vector2(1, 1)
 skew = -0.0610865
 texture = ExtResource("3_ahlc3")
 

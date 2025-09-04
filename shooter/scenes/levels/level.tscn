@@ -1,23 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://bk44ddgwselq"]
+[gd_scene load_steps=4 format=3 uid="uid://bk44ddgwselq"]
 
 [ext_resource type="Script" uid="uid://brw321gr28jm7" path="res://scenes/levels/Level.cs" id="1_b2cq8"]
 [ext_resource type="PackedScene" uid="uid://cumwheaqilvis" path="res://scenes/player/player.tscn" id="3_b2cq8"]
-[ext_resource type="PackedScene" uid="uid://bhecldl207xfr" path="res://scenes/objects/bed.tscn" id="3_xb4v1"]
-[ext_resource type="PackedScene" uid="uid://c6lqaljhq11bk" path="res://scenes/enemies/drone.tscn" id="4_xb4v1"]
-[ext_resource type="PackedScene" uid="uid://cs3fh65luftd6" path="res://scenes/objects/billboard.tscn" id="5_urvlt"]
+[ext_resource type="PackedScene" uid="uid://bhdcdawks85di" path="res://scenes/objects/gate.tscn" id="3_xb4v1"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_b2cq8")
 
+[node name="Gate" parent="." instance=ExtResource("3_xb4v1")]
+position = Vector2(545, -474)
+
+[node name="Projectiles" type="Node2D" parent="."]
+
 [node name="Player" parent="." instance=ExtResource("3_b2cq8")]
-position = Vector2(581, 305)
+position = Vector2(587, 514)
 
-[node name="Bed" parent="." instance=ExtResource("3_xb4v1")]
-position = Vector2(777, 8)
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.6, 0.6)
+position_smoothing_enabled = true
 
-[node name="Billboard" parent="." instance=ExtResource("5_urvlt")]
-position = Vector2(197, 546)
-rotation = 0.836013
-
-[node name="Drone" parent="." instance=ExtResource("4_xb4v1")]
-position = Vector2(256, 309)
+[connection signal="PlayerEnteredGate" from="Gate" to="." method="OnGatePlayerEnteredGate"]
+[connection signal="GrenadeThrown" from="Player" to="." method="OnPlayerGrenadeThrown"]
+[connection signal="LaserFired" from="Player" to="." method="OnPlayerLaserFired"]

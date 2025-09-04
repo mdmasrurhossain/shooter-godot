@@ -10,8 +10,42 @@ radius = 65.0308
 script = ExtResource("1_dovo2")
 
 [node name="PlayerImage" type="Sprite2D" parent="."]
-position = Vector2(1, -37)
+position = Vector2(35, 3)
+rotation = 1.5708
 texture = ExtResource("1_8afob")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_dovo2")
+
+[node name="LaserTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="GrenadeTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="LaserStartPositions" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="LaserStartPositions"]
+position = Vector2(128, 22)
+
+[node name="Marker2D2" type="Marker2D" parent="LaserStartPositions"]
+position = Vector2(125, 12)
+
+[node name="Marker2D3" type="Marker2D" parent="LaserStartPositions"]
+position = Vector2(125, 30)
+
+[node name="GrenadeStartPositions" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="GrenadeStartPositions"]
+position = Vector2(128, 22)
+
+[node name="Marker2D2" type="Marker2D" parent="GrenadeStartPositions"]
+position = Vector2(125, 12)
+
+[node name="Marker2D3" type="Marker2D" parent="GrenadeStartPositions"]
+position = Vector2(125, 30)
+
+[connection signal="timeout" from="LaserTimer" to="." method="OnLaserTimerTimeout"]
+[connection signal="timeout" from="GrenadeTimer" to="." method="OnGrenadeTimerTimeout"]
