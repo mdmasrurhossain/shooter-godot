@@ -32,11 +32,13 @@ public partial class Player : CharacterBody2D
 		// laser shooting input
 		if (Input.IsActionPressed("primary_action") && CanLaser)
 		{
+			GetNode<GpuParticles2D>("GPUParticles2D").Emitting = true;
 			var LaserMarkers = GetNode<Node2D>("LaserStartPositions").GetChildren();
 			var SelectedLaser = (Node2D)LaserMarkers[(int)(GD.Randi() % LaserMarkers.Count)];
-
+			
 			CanLaser = false;
 			LaserTimer.Start();
+			
 
 			EmitSignal(SignalName.LaserFired, SelectedLaser.GlobalPosition, PlayerDirection);
 

@@ -9,6 +9,8 @@ size = Vector2(633, 366)
 
 [node name="Bed" type="StaticBody2D"]
 rotation = -6.28319
+collision_layer = 4
+collision_mask = 11
 
 [node name="BedImage" type="Sprite2D" parent="."]
 texture = ExtResource("1_us1fn")
