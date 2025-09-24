@@ -14,6 +14,17 @@ public partial class Player : CharacterBody2D
 	public bool CanLaser = true;
 	public bool CanGrenade = true;
 
+	[Export]
+	public int MaxSpeed;
+	public int Speed;
+
+	public override void _Ready()
+	{
+		MaxSpeed = 500;
+		Speed = MaxSpeed;
+    }
+
+
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double _delta)
 	{
@@ -21,12 +32,12 @@ public partial class Player : CharacterBody2D
 		var GrenadeTimer = GetNode<Timer>("GrenadeTimer");
 		// input
 		var Direction = Input.GetVector("left", "right", "up", "down");
-		Velocity = Direction * 500;
+		Velocity = Direction * Speed;
 		MoveAndSlide();
 
 		// rotate player
 		LookAt(GetGlobalMousePosition());
-		
+
 		var PlayerDirection = (GetGlobalMousePosition() - Position).Normalized();
 
 		// laser shooting input
@@ -35,10 +46,10 @@ public partial class Player : CharacterBody2D
 			GetNode<GpuParticles2D>("GPUParticles2D").Emitting = true;
 			var LaserMarkers = GetNode<Node2D>("LaserStartPositions").GetChildren();
 			var SelectedLaser = (Node2D)LaserMarkers[(int)(GD.Randi() % LaserMarkers.Count)];
-			
+
 			CanLaser = false;
 			LaserTimer.Start();
-			
+
 
 			EmitSignal(SignalName.LaserFired, SelectedLaser.GlobalPosition, PlayerDirection);
 
