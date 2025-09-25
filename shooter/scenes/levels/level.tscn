@@ -8,6 +8,9 @@ script = ExtResource("1_b2cq8")
 
 [node name="Ground" type="Node2D" parent="."]
 
+[node name="Projectiles" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
 [node name="Player" parent="." instance=ExtResource("3_b2cq8")]
 position = Vector2(587, 503)
 
@@ -15,8 +18,7 @@ position = Vector2(587, 503)
 zoom = Vector2(0.6, 0.6)
 position_smoothing_enabled = true
 
-[node name="Projectiles" type="Node2D" parent="."]
-metadata/_edit_lock_ = true
+[node name="Lights" type="Node2D" parent="."]
 
 [connection signal="GrenadeThrown" from="Player" to="." method="OnPlayerGrenadeThrown"]
 [connection signal="LaserFired" from="Player" to="." method="OnPlayerLaserFired"]
