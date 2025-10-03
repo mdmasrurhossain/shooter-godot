@@ -13,6 +13,7 @@ public partial class Level : Node2D
 		laser.RotationDegrees = Mathf.RadToDeg(direction.Angle()) + 90;
 		laser.Direction = direction;
 		GetNode<Node2D>("Projectiles").AddChild(laser, true);
+		GetNode<Ui>("UI").UpdateLaserText();
 	}
 
 	public void OnPlayerGrenadeThrown(Vector2 pos, Vector2 direction)
@@ -21,6 +22,7 @@ public partial class Level : Node2D
 		grenade.Position = pos;
 		grenade.LinearVelocity = direction * grenade.Speed;
 		GetNode<Node2D>("Projectiles").AddChild(grenade, true);
+		GetNode<Ui>("UI").UpdateGrenadeText();
 	}
 
 	public void OnHousePlayerEntered()
