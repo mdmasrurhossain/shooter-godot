@@ -11,9 +11,6 @@ public partial class Player : CharacterBody2D
 	[Signal]
 	public delegate void GrenadeThrownEventHandler(Vector2 Position, Vector2 Direction);
 
-	[Signal]
-	public delegate void UpdateStatsEventHandler();
-
 	public bool CanLaser = true;
 	public bool CanGrenade = true;
 
@@ -83,12 +80,4 @@ public partial class Player : CharacterBody2D
 		CanGrenade = true;
 	}
 
-	public void AddItem(string type)
-	{
-		if (type == "laser")
-			Globals.Instance.LaserAmount += 5;
-		if (type == "grenade")
-			Globals.Instance.GrenadeAmount += 1;
-		EmitSignal(SignalName.UpdateStats);
-	}
 }

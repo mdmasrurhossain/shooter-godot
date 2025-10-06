@@ -4,11 +4,39 @@ using System;
 public partial class Globals : Node
 {
     [Signal]
-    public delegate void HealthChangeEventHandler();
+    public delegate void StatChangeEventHandler();
 
-    public int LaserAmount = 20;
-    public int GrenadeAmount = 5;
+    private int _laserAmount = 20;
+    private int _grenadeAmount = 5;
     private int _health = 60;
+
+    public int LaserAmount
+    {
+        get
+        {
+            return _laserAmount;
+        }
+
+        set
+        {
+            _laserAmount = value;
+            EmitSignal(SignalName.StatChange);
+        }
+    }
+    public int GrenadeAmount
+    {
+        get
+        {
+            return _grenadeAmount;
+        }
+
+        set
+        {
+            _grenadeAmount = value;
+            EmitSignal(SignalName.StatChange);
+        }
+    }
+    
     public int Health
     {
         get
@@ -18,7 +46,7 @@ public partial class Globals : Node
         set
         {
             _health = value;
-            EmitSignal(SignalName.HealthChange);
+            EmitSignal(SignalName.StatChange);
         }
 
     }

@@ -10,8 +10,8 @@ public partial class Item : Area2D
 
     public Item()
     {
-        // Type = AvailableOptions[RandomNumber.Next(0, AvailableOptions.Length)];
-        Type = "health";
+        Type = AvailableOptions[RandomNumber.Next(0, AvailableOptions.Length)];
+        // Type = "health";
     }
 
     public override void _Ready()
@@ -33,7 +33,10 @@ public partial class Item : Area2D
 
     public void OnBodyEntered(Player body)
     {
-        body.AddItem(Type);
+		if (Type == "laser")  
+			Globals.Instance.LaserAmount += 5;
+		if (Type == "grenade")
+			Globals.Instance.GrenadeAmount += 1;
         if (Type == "health")
             Globals.Instance.Health += 10;
         QueueFree();

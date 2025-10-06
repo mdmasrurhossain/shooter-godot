@@ -23,8 +23,10 @@ public partial class Ui : CanvasLayer
 		GrenadeIcon = GetNode<TextureRect>("GrenadeCounter/VBoxContainer/TextureRect");
 		HealthBar = GetNode<TextureProgressBar>("MarginContainer/TextureProgressBar");
 
+		Globals.Instance.Connect(Globals.SignalName.StatChange, new Callable(this, MethodName.UpdateStatText));
+		Globals.Instance.Connect(Globals.SignalName.StatChange, new Callable(this, MethodName.UpdateStatText));
+		Globals.Instance.Connect(Globals.SignalName.StatChange, new Callable(this, MethodName.UpdateStatText));
 
-		Globals.Instance.Connect(Globals.SignalName.HealthChange, new Callable(this, MethodName.UpdateHealthText));
 		UpdateLaserText();
 		UpdateGrenadeText();
 		UpdateHealthText();
@@ -47,6 +49,13 @@ public partial class Ui : CanvasLayer
 	public void UpdateHealthText()
 	{
 		HealthBar.Value = Globals.Instance.Health;
+	}
+
+	public void UpdateStatText()
+	{
+		UpdateLaserText();
+		UpdateGrenadeText();
+		UpdateHealthText();
 	}
 
 	public void UpdateColor(int amount, Label label, TextureRect icon)
