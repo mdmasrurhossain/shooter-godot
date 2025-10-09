@@ -9,8 +9,6 @@ public partial class TransitionLayer : CanvasLayer
     public override void _Ready()
     {
         Instance = this;
-        Instance.TransitionColor.Color = new Color(0, 0, 0, 0);
-
     } 
 
     public async void ChangeScene(string target)

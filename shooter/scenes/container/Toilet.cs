@@ -3,8 +3,16 @@ using System;
 
 public partial class Toilet : ItemContainer
 {
-    public override void Hit()
+    public void Hit()
     {
-        GD.Print("toilet");
+        while (!Opened)
+        {
+            GetNode<Sprite2D>("LidSprite").Hide();
+            Vector2 Position = GetNode<Marker2D>("SpawnPositions/Marker2D").GlobalPosition;
+            EmitSignal(SignalName.Open, Position, CurrentDirection);
+            Opened = true;
+        }
+
+        
     }
 }

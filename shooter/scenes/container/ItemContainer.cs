@@ -1,10 +1,17 @@
 using Godot;
 using System;
 
-public partial class ItemContainer : Node2D
+public partial class ItemContainer : StaticBody2D
 {
-    public virtual void Hit()
+    [Signal]
+    public delegate void OpenEventHandler(Vector2 Pos, Vector2 Direction);
+
+    public Vector2 CurrentDirection;
+    public bool Opened = false;
+
+    public override void _Ready()
     {
-        GD.Print("Object");
+        CurrentDirection = Vector2.Down.Rotated(Rotation);
     }
+
 }

@@ -24,12 +24,8 @@ public partial class Ui : CanvasLayer
 		HealthBar = GetNode<TextureProgressBar>("MarginContainer/TextureProgressBar");
 
 		Globals.Instance.Connect(Globals.SignalName.StatChange, new Callable(this, MethodName.UpdateStatText));
-		Globals.Instance.Connect(Globals.SignalName.StatChange, new Callable(this, MethodName.UpdateStatText));
-		Globals.Instance.Connect(Globals.SignalName.StatChange, new Callable(this, MethodName.UpdateStatText));
 
-		UpdateLaserText();
-		UpdateGrenadeText();
-		UpdateHealthText();
+		UpdateStatText();
 
 	}
 
