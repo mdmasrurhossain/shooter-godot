@@ -9,6 +9,7 @@
 size = Vector2(404, 183)
 
 [node name="Crate" instance=ExtResource("1_8jj1p")]
+scale = Vector2(0.8, 0.8)
 script = ExtResource("2_c8njd")
 
 [node name="BaseSprite" parent="." index="0"]

@@ -9,6 +9,7 @@ public partial class Globals : Node
     private int _laserAmount = 20;
     private int _grenadeAmount = 5;
     private int _health = 60;
+    public Vector2 PlayerPos;
 
     public int LaserAmount
     {
@@ -50,6 +51,8 @@ public partial class Globals : Node
         }
 
     }
+
+    
     public static Globals Instance { get; private set; }
 
     public override void _Ready()

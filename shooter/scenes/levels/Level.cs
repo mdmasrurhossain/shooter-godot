@@ -14,18 +14,33 @@ public partial class Level : Node2D
 			container.Connect(ItemContainer.SignalName.Open, new Callable(this, MethodName.OnContainerOpened));
 		}
 
+		foreach (Node2D scout in GetTree().GetNodesInGroup("Scouts"))
+        {
+			scout.Connect(Scout.SignalName.Laser, new Callable(this, MethodName.OnScoutLaser));
+        }
+
 	}
 
-	public void OnContainerOpened(Vector2 Pos, Vector2 Dir)
+	public void OnContainerOpened(Vector2 pos, Vector2 direction)
 	{
 		Item item = ItemScene.Instantiate<Item>();
-		item.Position = Pos;
-		item.Direction = Dir;
+		item.Position = pos;
+		item.Direction = direction;
 		GetNode<Node2D>("Items").CallDeferred("add_child", item);
 	}
 
 
 	public void OnPlayerLaserFired(Vector2 pos, Vector2 direction)
+	{
+		CreateLaser(pos, direction);
+	}
+
+	public void OnScoutLaser(Vector2 pos, Vector2 direction)
+	{
+		CreateLaser(pos, direction);
+	}
+
+	public void CreateLaser(Vector2 pos, Vector2 direction)
 	{
 		var laser = LaserScene.Instantiate<Laser>();
 		laser.Position = pos;
@@ -33,7 +48,7 @@ public partial class Level : Node2D
 		laser.Direction = direction;
 		GetNode<Node2D>("Projectiles").AddChild(laser, true);
 	}
-
+	
 	public void OnPlayerGrenadeThrown(Vector2 pos, Vector2 direction)
 	{
 		var grenade = GrenadeScene.Instantiate<Grenade>();

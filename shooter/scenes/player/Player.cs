@@ -34,6 +34,7 @@ public partial class Player : CharacterBody2D
 		var Direction = Input.GetVector("left", "right", "up", "down");
 		Velocity = Direction * Speed;
 		MoveAndSlide();
+		Globals.Instance.PlayerPos = GlobalPosition;
 
 		// rotate player
 		LookAt(GetGlobalMousePosition());
