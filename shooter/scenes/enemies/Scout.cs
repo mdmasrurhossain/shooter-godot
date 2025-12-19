@@ -10,10 +10,23 @@ public partial class Scout : CharacterBody2D
 	public bool PlayerNearby = false;
 	public bool CanLaser = true;
 	public bool RightGunUse = true;
+	
+	public int Health = 30;
+	public bool Vulnerable = true;
 
 	public void Hit()
     {
-        GD.Print("Scout was hit");
+		if(Vulnerable)
+        {
+            Health -= 10;
+			Vulnerable = false;
+			GetNode<Timer>("Timers/HitTimer").Start();
+			if (Health <= 0 )
+			{
+				QueueFree();
+			}
+        }
+  
     }
 
 	public override void _Process(double _delta)
@@ -29,7 +42,7 @@ public partial class Scout : CharacterBody2D
 				Vector2 Direction = (Globals.Instance.PlayerPos - Position).Normalized();
 				EmitSignal(SignalName.Laser, Position, Direction);
 				CanLaser = false;
-				GetNode<Timer>("LaserCooldown").Start();
+				GetNode<Timer>("Timers/LaserTimer").Start();
             }
         }
 	}
@@ -43,10 +56,17 @@ public partial class Scout : CharacterBody2D
 	{
 		PlayerNearby = false;
 	}
-	
-	public void OnLaserCooldownTimeout()
+
+	public void OnLaserTimerTimeout()
     {
-        CanLaser = true;
+		CanLaser = true;
+        
     }
+
+	public void OnHitTimerTimeout()
+    {
+        Vulnerable = true;
+    }
+	
 
 }
