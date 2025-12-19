@@ -11,6 +11,11 @@ public partial class Scout : CharacterBody2D
 	public bool CanLaser = true;
 	public bool RightGunUse = true;
 
+	public void Hit()
+    {
+        GD.Print("Scout was hit");
+    }
+
 	public override void _Process(double _delta)
 	{
 		if (PlayerNearby)
